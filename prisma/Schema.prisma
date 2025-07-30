@@ -25,6 +25,39 @@ model user{
     phone String
     createAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+    car   car[]
 }
 
+model car {
+    id String @id @default(uuid())
+    name String
+    subInfo  String
+    feature Json
+    onwerId String @default(uuid())
+    owner user @relation(fields: [onwerId] , references: [id])
+    brand brand @relation(fields: [brandId] , references: [id])
+    brandId String  @default(uuid())
+    price Float @default(0.0)
+    media Json
+    locationId String @default(uuid())
+    location location @relation(fields: [locationId] , references: [id])    
+    createdAt DateTime @default(now())
+    updateAt  DateTime @updatedAt
+}
 
+model brand {
+    id String @id @default(uuid())
+    name String @unique
+    media Json?
+    car car[]
+}
+
+model location {
+    id String @id @default(uuid())
+    city String 
+    state String 
+    country String 
+    latitude String 
+    longitude String 
+    car car[]
+}

@@ -9,7 +9,7 @@
     "start": "node src/index.js",
     "prisma": "npx prisma generate",
     "migrate": "npx prisma migrate dev --name init",
-    "seed" : "node prisma/seed.js"
+    "seed": "node prisma/seed.js"
   },
   "keywords": [],
   "author": "",
@@ -23,7 +23,10 @@
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
+    "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "path": "^0.12.7",
     "prisma": "^6.12.0"
   },
   "devDependencies": {

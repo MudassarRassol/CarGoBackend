@@ -21,6 +21,15 @@ app.get('/',async(req,res)=>{
     }
 })
 
+app.use((req,res,next)=>{
+    if(req.originalUrl.includes("api/cars")){
+        next();
+    }
+    else{
+        express.json({limit : "1mb"})(req,res,next)
+    }
+})
+
 
 
 const PORT = 3000;
