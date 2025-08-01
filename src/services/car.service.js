@@ -21,8 +21,7 @@ export const getAllCarsService = async () => {
 
 }
 
-export const addcarService = async (data) => {
-
+export const    addcarService = async (data) => {
     const cars = await prisma.car.create({
         data : {
             name : data.name,
@@ -31,7 +30,7 @@ export const addcarService = async (data) => {
             onwerId : data.userId,
             brandId : data.brandId,
             media : data.media,
-            price : data.price,
+            price : parseInt(data.price),
             locationId : data.locationId,
             updateAt : new Date()
         }

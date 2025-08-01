@@ -17,16 +17,16 @@ const storage = multer.diskStorage({
     cb(null, uploadDir);
   },
   filename: (_, file, cb) => {
-    // const ext = path.extname(file.originalname)
+    const ext = path.extname(file.originalname); // ✅ make sure this is defined
     cb(null, `${Date.now()}-${Math.random().toString(36).slice(2)}${ext}`);
   },
 });
 
 const fileFilter = (_, file, cb) => {
-  console.log("File Filter :", file.originalname.file.mimetype);
+  console.log("File Filter:", file.originalname, file.mimetype); // ✅ correct log
   file.mimetype.startsWith("image/")
     ? cb(null, true)
-    : cb(new Error("Only images are allowed", false));
+    : cb(new Error("Only images are allowed"), false);
 };
 
 const upload = multer({

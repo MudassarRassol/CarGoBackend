@@ -6,7 +6,8 @@ import { uploadImages } from "../services/upload.service.js";
 const carroutes = express.Router();
 
 carroutes.get('/allcars',getAllCars)
-carroutes.post('/addcar',authentication,upload.array('images', 5),uploadImages,addcar)
+carroutes.post( '/addcar',authentication,upload.array('images', 5),addcar);
+
 // carroutes.post('/login',loginValidation,logincontroller)
 
 export default carroutes
