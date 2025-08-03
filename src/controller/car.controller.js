@@ -1,5 +1,5 @@
 import { loginService, signupService } from "../services/auth.service.js"
-import { addcarService, getAllCarsService } from "../services/car.service.js";
+import { addbrandService, addcarService, getAllCarsService } from "../services/car.service.js";
 import { errorResponse, successResponse } from "../services/response.service.js";
 import { uploadImages } from "../services/upload.service.js";
 
@@ -35,3 +35,23 @@ export const addcar = async(req,res)=>{
     }
 }
 
+export const addbrand = async(req,res)=>{
+
+     if (!req.files) {
+        throw new Error("No images uploaded");
+      }
+
+      const images = await uploadImages(req.files);
+      req.body.media = images; // Attach processed image URLs to req.body
+
+    const data =  {
+        ...req.body,
+        userId : req.userId
+    }
+    try {
+        const Brand = await  addbrandService(data)
+        return successResponse(res, Brand, 201, "Brand Added Succesfully");
+    } catch (error) {
+        return errorResponse(res,error)
+    }
+}

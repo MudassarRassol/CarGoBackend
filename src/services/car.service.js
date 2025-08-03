@@ -41,3 +41,17 @@ export const    addcarService = async (data) => {
     return cars
 
 }
+
+export const    addbrandService = async (data) => {
+    const cars = await prisma.brand.create({
+        data : {
+            name : data.name,
+            media : data.media
+        }
+    });
+
+    if (cars.length === 0) throw new Error("No cars found");
+
+    return cars
+
+}
